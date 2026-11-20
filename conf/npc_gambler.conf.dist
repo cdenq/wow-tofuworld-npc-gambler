@@ -1,64 +1,99 @@
 [worldserver]
 
+########################################
+# Asmongold <Deathroll Addict> (Tofu Worldview fork of mod-npc-gambler)
+########################################
 #
-#   Announce the module when the player logs in?
-#       Enable : 1
-#       Disable: 0
-#
-
-Gambler.Announce = 1
-
-#
-#   How often does the NPC emote in milliseconds?
-#   Randomly caclulated within range 60000 (1 min, minumum) to 3000000 (5 minutes, max)
-#   Default: 60000 (1 minutes, minimum)
-#   Disable: 0
-#
-
-Gambler.MessageTimer = 60000
+# Values load at server start and again on ".reload config".
+# Money amounts are in copper unless the key says gold (1g = 10000 copper, 1s = 100 copper).
 
 #
-#   The spell cast to get the player's attention
-#   Default: 44940
-#   Disable: 0
+#   Asmongold.Gamba.Bet1 to Bet4
+#       The four Gamba bets, in copper.
+#       Default: 1000 (10s), 10000 (1g), 250000 (25g), 1000000 (100g)
 #
 
-Gambler.EmoteSpell = 0
+Asmongold.Gamba.Bet1 = 1000
+Asmongold.Gamba.Bet2 = 10000
+Asmongold.Gamba.Bet3 = 250000
+Asmongold.Gamba.Bet4 = 1000000
 
 #
-#   Type of money allowed to gamble
-#       Enable : 1
-#       Disable: 0
+#   Asmongold.Gamba.WinMax
+#       A roll from 1 to this value wins. A roll of 100 is the jackpot. Everything else loses.
+#       49 gives the player a 1% edge (1.01x stake returned on average); 48 gives the house a 1% edge (0.99x). If you change it, also update the Gamba text (npc_text 900011) in the module SQL.
+#       Default: 49
 #
 
-Gambler.EnableGold = 1
-Gambler.EnableSilver = 1
-Gambler.EnableCopper = 1
+Asmongold.Gamba.WinMax = 49
 
 #
-#   Type of money to gamble
-#       1: Copper, 2: Silver, 3: Gold
-#       Default: 2
+#   Asmongold.Gamba.WinMultiplier, Asmongold.Gamba.JackpotMultiplier
+#       Total paid back on a win or a jackpot, as a multiple of the stake (the stake is taken when the bet is placed).
+#       Default: 2, 3
 #
 
-Gambler.MoneyType = 2
+Asmongold.Gamba.WinMultiplier = 2
+Asmongold.Gamba.JackpotMultiplier = 3
 
 #
-#   Gambling amounts the player can choose from.
-#   The random win/loss rate works well, but larger amounts of gold can be abused.
-#       Default: 1, 5, 10, 15, 20
+#   Asmongold.Gamba.PityLosses, Asmongold.Gamba.PityBonus
+#       After PityLosses Gamba losses in a row (counted across all players), the next losing roll is lowered by PityBonus. The pity is used up after that one roll; any win also resets the count.
+#       Default: 5, 25
 #
 
-Gambler.Amount1 = 1
-Gambler.Amount2 = 5
-Gambler.Amount3 = 10
-Gambler.Amount4 = 15
-Gambler.Amount5 = 20
+Asmongold.Gamba.PityLosses = 5
+Asmongold.Gamba.PityBonus = 25
 
 #
-#   Jackpot Amount
-#   Only possible if a 100 is rolled in the first 10 consecutive bets
-#       Default: 50
+#   Asmongold.Deathroll.Bet1 to Bet4
+#       The four Deathroll bets, in gold. A win pays back 2x the bet. Standard mode rolls to 10x the bet.
+#       Default: 10, 100, 500, 1000
 #
 
-Gambler.Jackpot = 50
+Asmongold.Deathroll.Bet1 = 10
+Asmongold.Deathroll.Bet2 = 100
+Asmongold.Deathroll.Bet3 = 500
+Asmongold.Deathroll.Bet4 = 1000
+
+#
+#   Asmongold.Deathroll.CustomMin, Asmongold.Deathroll.CustomMax
+#       Allowed range for the number typed in Custom mode.
+#       Default: 1, 1000000
+#
+
+Asmongold.Deathroll.CustomMin = 1
+Asmongold.Deathroll.CustomMax = 1000000
+
+#
+#   Asmongold.RPS.WinCopper
+#       Copper paid for a Rock-Paper-Scissors win.
+#       Default: 1
+#
+
+Asmongold.RPS.WinCopper = 1
+
+#
+#   Asmongold.Barker.Enable
+#       Asmongold says a random line from Asmongold.Barker.Messages every few minutes.
+#       Enable: 1, Disable: 0
+#       Default: 1
+#
+
+Asmongold.Barker.Enable = 1
+
+#
+#   Asmongold.Barker.IntervalMin, Asmongold.Barker.IntervalMax
+#       Seconds between lines, picked at random in this range. Minimum 10.
+#       Default: 60, 180
+#
+
+Asmongold.Barker.IntervalMin = 60
+Asmongold.Barker.IntervalMax = 180
+
+#
+#   Asmongold.Barker.Messages
+#       Barker lines separated by ";". Do not use ";" or "|" inside a line.
+#
+
+Asmongold.Barker.Messages = "Deathroll me. Right now. 1000 gold. I'm not even scared.;It's over. I rolled a 2 out of 10,000. Somebody take my last gold before I do something stupid.;Gamba isn't a problem. Gamba is a lifestyle. Step right up!;You call that a transmog? Win some gold and buy something that doesn't look like a level 12 quest reward.;I've been gold capped twice and broke three times. Today feels like a cap day.;WE'RE SO BACK! Somebody deathroll me before it wears off.;Rolled a 99, then a 3, then a zero. Classic. The dice gods hate me personally.;Rock, paper, scissors for a copper? That's free money. Don't overthink it.;Can't raid tonight. Repair bills. Deathroll me for repair money!;Every roll is the one. That's how it works. Trust me, I'm a professional."

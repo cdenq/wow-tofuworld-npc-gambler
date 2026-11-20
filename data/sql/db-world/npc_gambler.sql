@@ -1,20 +1,27 @@
--- --------------------------------------------------------------------------------------
---  BUFFER - 601016
--- --------------------------------------------------------------------------------------
--- Information
--- Creature ID: 601020,
--- Creature Model 20873 -- Elven Vixen
--- Name: Loita
--- Title: Dobbo Girl
+-- Asmongold <Deathroll Addict> (Tofu Worldview fork of mod-npc-gambler)
+-- Schema: acore_world. Applied by worldserver's updater as module SQL; re-runnable (DELETE then INSERT).
+-- Restart needed (creature_template). Players must delete the client Cache folder to see name, model, and text changes.
+-- Spawn is not here: it is a separate custom SQL file (tofu_*.sql).
+-- Check: SELECT entry, name, subname, ScriptName FROM creature_template WHERE entry = 601020; SELECT CreatureDisplayID FROM creature_template_model WHERE CreatureID = 601020; SELECT ID FROM npc_text WHERE ID BETWEEN 900010 AND 900017;
+-- Expect: 601020 | Asmongold | Deathroll Addict | gamble_npc; display 428; eight npc_text rows.
 
--- NPC
-DELETE FROM `creature_template` WHERE (`entry` = 601020);
-INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES(601020, 0, 0, 0, 0, 0, 'Loita', 'Dobbo Girl', 'LootAll', 0, 80, 80, 0, 35, 1, 1, 1.14286, 1, 1, 1, 4, 0, 1, 0, 0, 0, 0, 1, 4, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 16777216, 'gamble_npc', 0);
--- NPC Model
-DELETE FROM `creature_template_model` WHERE `CreatureID` IN (601020);
+DELETE FROM `creature_template` WHERE `entry` = 601020;
+INSERT INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_entry_2`, `difficulty_entry_3`, `KillCredit1`, `KillCredit2`, `name`, `subname`, `IconName`, `gossip_menu_id`, `minlevel`, `maxlevel`, `exp`, `faction`, `npcflag`, `speed_walk`, `speed_run`, `speed_swim`, `speed_flight`, `detection_range`, `rank`, `dmgschool`, `DamageModifier`, `BaseAttackTime`, `RangeAttackTime`, `BaseVariance`, `RangeVariance`, `unit_class`, `unit_flags`, `unit_flags2`, `dynamicflags`, `family`, `type`, `type_flags`, `lootid`, `pickpocketloot`, `skinloot`, `PetSpellDataId`, `VehicleId`, `mingold`, `maxgold`, `AIName`, `MovementType`, `HoverHeight`, `HealthModifier`, `ManaModifier`, `ArmorModifier`, `ExperienceModifier`, `RacialLeader`, `movementId`, `RegenHealth`, `flags_extra`, `ScriptName`, `VerifiedBuild`) VALUES
+(601020, 0, 0, 0, 0, 0, 'Asmongold', 'Deathroll Addict', NULL, 0, 80, 80, 2, 35, 1, 1, 1.14286, 1, 1, 20, 0, 0, 1, 2000, 2000, 1, 1, 1, 0, 2048, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, '', 0, 1, 1, 1, 1, 1, 0, 0, 1, 16777216, 'gamble_npc', 0);
+
+-- Display 428: Creature\HumanMaleFarmer, skin HumanMaleFarmerSkin01, NPCSoundID 0 (silent gossip greeting).
+DELETE FROM `creature_template_model` WHERE `CreatureID` = 601020;
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
-(601020, 0, 20873, 1, 1, 12340);
--- NPC Text
-DELETE FROM `npc_text` WHERE (`ID` = 601020);
-INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`, `BroadcastTextID0`, `lang0`, `Probability0`, `em0_0`, `em0_1`, `em0_2`, `em0_3`, `em0_4`, `em0_5`, `text1_0`, `text1_1`, `BroadcastTextID1`, `lang1`, `Probability1`, `em1_0`, `em1_1`, `em1_2`, `em1_3`, `em1_4`, `em1_5`, `text2_0`, `text2_1`, `BroadcastTextID2`, `lang2`, `Probability2`, `em2_0`, `em2_1`, `em2_2`, `em2_3`, `em2_4`, `em2_5`, `text3_0`, `text3_1`, `BroadcastTextID3`, `lang3`, `Probability3`, `em3_0`, `em3_1`, `em3_2`, `em3_3`, `em3_4`, `em3_5`, `text4_0`, `text4_1`, `BroadcastTextID4`, `lang4`, `Probability4`, `em4_0`, `em4_1`, `em4_2`, `em4_3`, `em4_4`, `em4_5`, `text5_0`, `text5_1`, `BroadcastTextID5`, `lang5`, `Probability5`, `em5_0`, `em5_1`, `em5_2`, `em5_3`, `em5_4`, `em5_5`, `text6_0`, `text6_1`, `BroadcastTextID6`, `lang6`, `Probability6`, `em6_0`, `em6_1`, `em6_2`, `em6_3`, `em6_4`, `em6_5`, `text7_0`, `text7_1`, `BroadcastTextID7`, `lang7`, `Probability7`, `em7_0`, `em7_1`, `em7_2`, `em7_3`, `em7_4`, `em7_5`, `VerifiedBuild`) VALUES
-(601020, 'Hey there, the name\'s Loita. You feelin\' lucky?\'', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(601020, 0, 428, 1, 1, 12340);
+
+-- Gossip texts 900010 to 900017 (registry: npc_text 900010 to 900019). $B is a line break.
+DELETE FROM `npc_text` WHERE `ID` BETWEEN 900010 AND 900019;
+INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`, `Probability0`) VALUES
+(900010, 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 1),
+(900011, 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 1),
+(900012, 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 1),
+(900013, 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 1),
+(900014, 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 1),
+(900015, 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 1),
+(900016, 'Okay, okay. My turn. Watch this.', 'Okay, okay. My turn. Watch this.', 1),
+(900017, 'Your roll. Don''t choke.', 'Your roll. Don''t choke.', 1);
