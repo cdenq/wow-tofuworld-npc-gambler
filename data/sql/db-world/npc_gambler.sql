@@ -2,7 +2,7 @@
 -- Schema: acore_world. Applied by worldserver's updater as module SQL; re-runnable (DELETE then INSERT).
 -- Restart needed (creature_template). Players must delete the client Cache folder to see name, model, and text changes.
 -- Spawn is not here: it is a separate custom SQL file (tofu_*.sql).
--- Check: SELECT entry, name, subname, ScriptName FROM creature_template WHERE entry = 601020; SELECT CreatureDisplayID FROM creature_template_model WHERE CreatureID = 601020; SELECT ID FROM npc_text WHERE ID BETWEEN 900010 AND 900017;
+-- Check: SELECT entry, name, subname, ScriptName FROM creature_template WHERE entry = 601020; SELECT CreatureDisplayID FROM creature_template_model WHERE CreatureID = 601020; SELECT ID FROM npc_text WHERE ID BETWEEN 900020 AND 900027;
 -- Expect: 601020 | Asmongold | Deathroll Addict | gamble_npc; display 428; eight npc_text rows.
 
 DELETE FROM `creature_template` WHERE `entry` = 601020;
@@ -14,14 +14,14 @@ DELETE FROM `creature_template_model` WHERE `CreatureID` = 601020;
 INSERT INTO `creature_template_model` (`CreatureID`, `Idx`, `CreatureDisplayID`, `DisplayScale`, `Probability`, `VerifiedBuild`) VALUES
 (601020, 0, 428, 1, 1, 12340);
 
--- Gossip texts 900010 to 900017 (registry: npc_text 900010 to 900019). $B is a line break.
-DELETE FROM `npc_text` WHERE `ID` BETWEEN 900010 AND 900019;
+-- Gossip texts 900020 to 900027 (registry: npc_text 900020 to 900029). $B is a line break.
+DELETE FROM `npc_text` WHERE `ID` BETWEEN 900020 AND 900029;
 INSERT INTO `npc_text` (`ID`, `text0_0`, `text0_1`, `Probability0`) VALUES
-(900010, 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 1),
-(900011, 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 1),
-(900012, 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 1),
-(900013, 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 1),
-(900014, 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 1),
-(900015, 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 1),
-(900016, 'Okay, okay. My turn. Watch this.', 'Okay, okay. My turn. Watch this.', 1),
-(900017, 'Your roll. Don''t choke.', 'Your roll. Don''t choke.', 1);
+(900020, 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 'Oh, look who it is. You here to lose some gold or what?$B$BPick your poison: a deathroll, some gamba, or rock-paper-scissors if you''re broke.', 1),
+(900021, 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 'Roll 1 to 49 and you double up. 50 to 99, the house eats it. Hit a 100 and that''s the jackpot, triple your bet.$B$BHow much are we putting on it?', 1),
+(900022, 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 'Rock, paper, scissors. Beat me and I''ll give you a copper. Free money, apparently.$B$BPick one.', 1),
+(900023, 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 'A deathroll. You roll, then I roll under your number, back and forth. First one to hit a 0 loses. Winner takes double.$B$BHow much gold are you putting up?', 1),
+(900024, 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 'What are we rolling to?$B$BSudden Death is 0 or 1. Rollie is 100. Standard is ten times your bet. Or name your own number.', 1),
+(900025, 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 'Gold''s on the table. You roll first.$B$BLast chance to back out.', 1),
+(900026, 'Okay, okay. My turn. Watch this.', 'Okay, okay. My turn. Watch this.', 1),
+(900027, 'Your roll. Don''t choke.', 'Your roll. Don''t choke.', 1);

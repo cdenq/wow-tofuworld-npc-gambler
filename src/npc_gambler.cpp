@@ -29,17 +29,17 @@
 
 namespace
 {
-    // npc_text IDs (registry: npc_text 900010 to 900019)
+    // npc_text IDs (registry: npc_text 900020 to 900029)
     enum AsmonTexts : uint32
     {
-        TEXT_MAIN             = 900010,
-        TEXT_GAMBA            = 900011,
-        TEXT_RPS              = 900012,
-        TEXT_DR_BET           = 900013,
-        TEXT_DR_TYPE          = 900014,
-        TEXT_DR_READY         = 900015,
-        TEXT_DR_ASMON_TURN    = 900016,
-        TEXT_DR_PLAYER_TURN   = 900017
+        TEXT_MAIN             = 900020,
+        TEXT_GAMBA            = 900021,
+        TEXT_RPS              = 900022,
+        TEXT_DR_BET           = 900023,
+        TEXT_DR_TYPE          = 900024,
+        TEXT_DR_READY         = 900025,
+        TEXT_DR_ASMON_TURN    = 900026,
+        TEXT_DR_PLAYER_TURN   = 900027
     };
 
     enum AsmonActions : uint32

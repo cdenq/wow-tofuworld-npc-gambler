@@ -21,7 +21,7 @@ Asmongold.Gamba.Bet4 = 1000000
 #
 #   Asmongold.Gamba.WinMax
 #       A roll from 1 to this value wins. A roll of 100 is the jackpot. Everything else loses.
-#       49 gives the player a 1% edge (1.01x stake returned on average); 48 gives the house a 1% edge (0.99x). If you change it, also update the Gamba text (npc_text 900011) in the module SQL.
+#       49 gives the player a 1% edge (1.01x stake returned on average); 48 gives the house a 1% edge (0.99x). If you change it, also update the Gamba text (npc_text 900021) in the module SQL.
 #       Default: 49
 #
 
