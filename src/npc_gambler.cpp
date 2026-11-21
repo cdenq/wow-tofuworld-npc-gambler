@@ -243,17 +243,18 @@ namespace
         SendGossipMenuFor(player, TEXT_DR_READY, creature->GetGUID());
     }
 
+    // The 3.3.5a client auto-selects a gossip menu's only option unless its icon is GOSSIP_ICON_CHAT, so the single-option turn menus below must use the chat icon to wait for a click.
     void ShowDrAsmonTurn(Player* player, Creature* creature)
     {
         ClearGossipMenuFor(player);
-        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "Your go!", GOSSIP_SENDER_MAIN, ACTION_DR_ASMON_GO);
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "Your go!", GOSSIP_SENDER_MAIN, ACTION_DR_ASMON_GO);
         SendGossipMenuFor(player, TEXT_DR_ASMON_TURN, creature->GetGUID());
     }
 
     void ShowDrPlayerTurn(Player* player, Creature* creature)
     {
         ClearGossipMenuFor(player);
-        AddGossipItemFor(player, GOSSIP_ICON_BATTLE, "My turn...", GOSSIP_SENDER_MAIN, ACTION_DR_PLAYER_TURN);
+        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "My turn...", GOSSIP_SENDER_MAIN, ACTION_DR_PLAYER_TURN);
         SendGossipMenuFor(player, TEXT_DR_PLAYER_TURN, creature->GetGUID());
     }
 
