@@ -89,8 +89,32 @@ namespace
         bool barkerEnable = true;
         uint32 barkerMinMs = 60000;
         uint32 barkerMaxMs = 180000;
-        std::vector<std::string> barkerMessages;
+        uint32 barkerFireworkChance = 0; // percent chance per line to also cast the upstream firework on himself
+        std::vector<std::string> barkerMessages; // from the conf; empty means the built-in lines below
     };
+
+    // Built-in barker lines, each with its own emote (as upstream Skinny had). Used when Asmongold.Barker.Messages is empty or missing, and a conf line that matches one of these exactly keeps its emote.
+    struct BarkLine
+    {
+        char const* text;
+        uint32 emote;
+    };
+
+    constexpr std::array<BarkLine, 10> DEFAULT_BARKS{{
+        { "Deathroll me. Right now. 1000 gold. I'm not even scared.", EMOTE_ONESHOT_EXCLAMATION },
+        { "It's over. I rolled a 2 out of 10,000. Somebody take my last gold before I do something stupid.", EMOTE_ONESHOT_CRY },
+        { "Gamba isn't a problem. Gamba is a lifestyle. Step right up!", EMOTE_ONESHOT_CHEER },
+        { "You call that a transmog? Win some gold and buy something that doesn't look like a level 12 quest reward.", EMOTE_ONESHOT_LAUGH },
+        { "I've been gold capped twice and broke three times. Today feels like a cap day.", EMOTE_ONESHOT_TALK },
+        { "WE'RE SO BACK! Somebody deathroll me before it wears off.", EMOTE_ONESHOT_ROAR },
+        { "Rolled a 99, then a 3, then a zero. Classic. The dice gods hate me personally.", EMOTE_ONESHOT_RUDE },
+        { "Rock, paper, scissors for a copper? That's free money. Don't overthink it.", EMOTE_ONESHOT_POINT },
+        { "Can't raid tonight. Repair bills. Deathroll me for repair money!", EMOTE_ONESHOT_BEG },
+        { "Every roll is the one. That's how it works. Trust me, I'm a professional.", EMOTE_ONESHOT_BOW }
+    }};
+
+    // Emotes picked at random for conf lines that are not built-in lines.
+    constexpr std::array<uint32, 6> RANDOM_BARK_EMOTES{ EMOTE_ONESHOT_EXCLAMATION, EMOTE_ONESHOT_LAUGH, EMOTE_ONESHOT_TALK, EMOTE_ONESHOT_POINT, EMOTE_ONESHOT_CHEER, EMOTE_ONESHOT_RUDE };
 
     enum class DrPhase : uint8
     {
@@ -608,6 +632,7 @@ public:
         cfg.barkerEnable = sConfigMgr->GetOption<bool>("Asmongold.Barker.Enable", true);
         cfg.barkerMinMs = sConfigMgr->GetOption<uint32>("Asmongold.Barker.IntervalMin", 60) * IN_MILLISECONDS;
         cfg.barkerMaxMs = sConfigMgr->GetOption<uint32>("Asmongold.Barker.IntervalMax", 180) * IN_MILLISECONDS;
+        cfg.barkerFireworkChance = std::min<uint32>(sConfigMgr->GetOption<uint32>("Asmongold.Barker.FireworkChance", 0), 100);
         cfg.barkerMessages = SplitMessages(sConfigMgr->GetOption<std::string>("Asmongold.Barker.Messages", ""));
 
         // Sanity limits so a bad conf value cannot break the games.
@@ -673,12 +698,35 @@ public:
             }
 
             AsmonConfig const cfg = GetConfig();
-            if (cfg.barkerEnable && !cfg.barkerMessages.empty())
-            {
-                me->Say(PickOne(cfg.barkerMessages), LANG_UNIVERSAL);
-                me->HandleEmoteCommand(EMOTE_ONESHOT_EXCLAMATION);
-            }
+            if (cfg.barkerEnable)
+                Bark(cfg);
             barkTimer = urand(cfg.barkerMinMs, cfg.barkerMaxMs);
+        }
+
+        void Bark(AsmonConfig const& cfg)
+        {
+            std::string text;
+            uint32 emote = 0;
+            if (cfg.barkerMessages.empty())
+            {
+                BarkLine const& line = DEFAULT_BARKS[urand(0, uint32(DEFAULT_BARKS.size() - 1))];
+                text = line.text;
+                emote = line.emote;
+            }
+            else
+            {
+                text = PickOne(cfg.barkerMessages);
+                for (BarkLine const& line : DEFAULT_BARKS)
+                    if (text == line.text)
+                        emote = line.emote;
+                if (!emote)
+                    emote = RANDOM_BARK_EMOTES[urand(0, uint32(RANDOM_BARK_EMOTES.size() - 1))];
+            }
+
+            me->Say(text, LANG_UNIVERSAL);
+            me->HandleEmoteCommand(emote);
+            if (cfg.barkerFireworkChance && urand(1, 100) <= cfg.barkerFireworkChance)
+                me->CastSpell(me, SPELL_JACKPOT_VISUAL, true);
         }
     };
 

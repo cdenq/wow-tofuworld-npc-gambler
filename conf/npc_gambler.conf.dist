@@ -92,8 +92,18 @@ Asmongold.Barker.IntervalMin = 60
 Asmongold.Barker.IntervalMax = 180
 
 #
-#   Asmongold.Barker.Messages
-#       Barker lines separated by ";". Do not use ";" or "|" inside a line.
+#   Asmongold.Barker.FireworkChance
+#       Percent chance (0 to 100) that a barker line also sets off the upstream firework visual (spell 44940) on Asmongold.
+#       Default: 0
 #
 
-Asmongold.Barker.Messages = "Deathroll me. Right now. 1000 gold. I'm not even scared.;It's over. I rolled a 2 out of 10,000. Somebody take my last gold before I do something stupid.;Gamba isn't a problem. Gamba is a lifestyle. Step right up!;You call that a transmog? Win some gold and buy something that doesn't look like a level 12 quest reward.;I've been gold capped twice and broke three times. Today feels like a cap day.;WE'RE SO BACK! Somebody deathroll me before it wears off.;Rolled a 99, then a 3, then a zero. Classic. The dice gods hate me personally.;Rock, paper, scissors for a copper? That's free money. Don't overthink it.;Can't raid tonight. Repair bills. Deathroll me for repair money!;Every roll is the one. That's how it works. Trust me, I'm a professional."
+Asmongold.Barker.FireworkChance = 0
+
+#
+#   Asmongold.Barker.Messages
+#       Barker lines separated by ";". Do not use ";" or "|" inside a line.
+#       Leave empty to use the 10 built-in Asmongold lines, each with its own emote. A line that matches a built-in line exactly keeps its emote; any other line gets a random emote.
+#       Default: ""
+#
+
+Asmongold.Barker.Messages = ""
